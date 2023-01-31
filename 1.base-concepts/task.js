@@ -1,20 +1,21 @@
 // ----- Задание № 1 -----
 
 "use strict"
+
 function solveEquation(a, b, c) {
-  let d = (b ** 2) - (4 * a * c);
+  const discriminant = (b ** 2) - (4 * a * c);
 
-  let arr = [];
+  const coefficient = [];
 
-  if (d < 0) {
+  if (discriminant < 0) {
     return [];
-  } else if (d == 0) {
+  } else if (discriminant == 0) {
     return [-b/(2*a)];
   } else {
-   return [(-b + Math.sqrt(d) )/(2*a), (-b - Math.sqrt(d) )/(2*a)];
+   return [(-b + Math.sqrt(discriminant) )/(2*a), (-b - Math.sqrt(discriminant) )/(2*a)];
   }
 
-  return arr;
+  return coefficient;
 }
 
 // ----- Задание № 2 -----
@@ -25,17 +26,17 @@ let p,        // пеобразование ставки в месячную
     result;   // общая сумма
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-  isNaN(percent);
-  isNaN(contribution);
-  isNaN(amount);
-  isNaN(countMonths);
+  if (isNaN(countMonths)) {
+    return calculateTotalMortgage(countMonths);
+  } else {
+    return false;
+  }
 
   p = (percent / 12) / 100;
   s = amount - contribution;
   payment = s * (p + (p / (((1 + p) ** countMonths) - 1)));
   result = amount * payment;
 
-  return result.toFixed(2);
+  return result.toFixed(2); 
 
-  
 }
