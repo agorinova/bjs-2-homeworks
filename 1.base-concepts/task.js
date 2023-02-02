@@ -26,17 +26,23 @@ let p,        // пеобразование ставки в месячную
     result;   // общая сумма
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-  if (isNaN(countMonths)) {
-    return calculateTotalMortgage(countMonths);
-  } else {
+  if (isNaN(percent)) {
     return false;
   }
 
-  p = (percent / 12) / 100;
-  s = amount - contribution;
-  payment = s * (p + (p / (((1 + p) ** countMonths) - 1)));
-  result = amount * payment;
+  if (isNaN(contribution)) {
+    return false;
+  }
 
-  return result.toFixed(2); 
+  if (isNaN(amount)) {
+    return false;
+  }
+
+  p = percent / 100 / 12;
+  s = amount - contribution;
+  payment = s * (p + (p / (((1 + p)**countMonths) - 1)));
+  result = payment * countMonths;
+
+  return Number(result.toFixed(2)); 
 
 }
