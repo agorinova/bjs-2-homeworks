@@ -75,7 +75,9 @@ class Library {
     }
 
     addBook(book){
-        this.books.push(book);
+        if(book.state) {
+            this.books.push(book);
+        }
     }
 
     findBookBy(type, value){
@@ -91,8 +93,8 @@ class Library {
     giveBookByName(bookName){
         let result;
         for(let i = 0; i < this.books.length; i++){
-            if(this.books[i][bookName] === true){
-                result -= this.books[i];
+            if(this.name === this.books[i][bookName]){
+                result = delete this.books[i];
             } else{
                 result = null;
             }
