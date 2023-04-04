@@ -75,7 +75,7 @@ class Library {
     }
 
     addBook(book){
-        if(book.state) {
+        if(book.state > 30) {
             this.books.push(book);
         }
     }
@@ -92,9 +92,10 @@ class Library {
 
     giveBookByName(bookName){
         let result;
+        let position = this.books.findIndex((item) => item["name"] !== bookName);
         for(let i = 0; i < this.books.length; i++){
-            if(this.name === this.books[i][bookName]){
-                result = delete this.books[i];
+            if(this.name === bookName){
+                result = this.books.splice(position, 1)[0];
             } else{
                 result = null;
             }
